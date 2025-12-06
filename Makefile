@@ -11,20 +11,20 @@ NPM = "bun"
 SQLITE = "sqlite3"
 CONF = "src/config.json"
 PHP = "php"
-DESTDIR = $(shell $(CURDIR)/$(NODEJQ) -r '.dest // "" | select(. != "") // "dist"' $(CURDIR)/$(CONF))
-SITEDOMAIN = $(shell $(CURDIR)/$(NODEJQ) -r ".DOMAIN" $(CURDIR)/$(CONF))
-FILESDOMAIN = $(shell $(CURDIR)/$(NODEJQ) -r ".FILE_DOMAIN" $(CURDIR)/$(CONF))
-MAXSIZE = $(shell $(CURDIR)/$(NODEJQ) -r ".max_upload_size" $(CURDIR)/$(CONF))
-CONTACT_EMAIL = $(shell $(CURDIR)/$(NODEJQ) -r ".infoContact" $(CURDIR)/$(CONF))
-PKG_VERSION = $(shell $(CURDIR)/$(NODEJQ) -r ".version" $(CURDIR)/package.json)
-EXPIRE_TIME = $(shell $(CURDIR)/$(NODEJQ) -r ".expireTime" $(CURDIR)/$(CONF))
+DESTDIR = $(shell $(NODEJQ) -r '.dest // "" | select(. != "") // "dist"' $(CURDIR)/$(CONF))
+SITEDOMAIN = $(shell $(NODEJQ) -r ".DOMAIN" $(CURDIR)/$(CONF))
+FILESDOMAIN = $(shell $(NODEJQ) -r ".FILE_DOMAIN" $(CURDIR)/$(CONF))
+MAXSIZE = $(shell $(NODEJQ) -r ".max_upload_size" $(CURDIR)/$(CONF))
+CONTACT_EMAIL = $(shell $(NODEJQ) -r ".infoContact" $(CURDIR)/$(CONF))
+PKG_VERSION = $(shell $(NODEJQ) -r ".version" $(CURDIR)/package.json)
+EXPIRE_TIME = $(shell $(NODEJQ) -r ".expireTime" $(CURDIR)/$(CONF))
 TMPDIR = $(shell mktemp -d)
 DOCKER_IMAGE = "$(shell basename $(CURDIR) | tr [:upper:] [:lower:])"
 DOCKER_TAG = "$(DOCKER_TAG)"
 CONTAINER_NAME = "$(CONTAINER_NAME)"
-pageList = $(shell $(CURDIR)/$(NODEJQ) -r ".pages[]" $(CURDIR)/$(CONF))
+pageList = $(shell $(NODEJQ) -r ".pages[]" $(CURDIR)/$(CONF))
 noExt = $(shell echo $(i) | cut -d '.' -f1)
-NODEJQ = "node_modules/node-jq/bin/jq"
+NODEJQ = "jq"
 
 
 all: prod

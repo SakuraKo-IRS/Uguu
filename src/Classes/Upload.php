@@ -102,14 +102,14 @@ class Upload extends Response
                 $this->FILE_INFO['FILENAME'] = $this->generateName($this->FILE_INFO['EXTENSION']);
             }
             $result[] = [
-               $this->FILE_INFO['TEMP_NAME'],
-               $this->FILE_INFO['NAME'],
-               $this->FILE_INFO['SIZE'],
-               $this->FILE_INFO['XXH'],
-               $this->FILE_INFO['EXTENSION'],
-               $this->FILE_INFO['MIME'],
-               $this->FILE_INFO['DUPE'],
-               $this->FILE_INFO['FILENAME'],
+               'TEMP_NAME' => $this->FILE_INFO['TEMP_NAME'],
+               'NAME' => $this->FILE_INFO['NAME'],
+               'SIZE' => $this->FILE_INFO['SIZE'],
+               'XXH' => $this->FILE_INFO['XXH'],
+               'EXTENSION' => $this->FILE_INFO['EXTENSION'],
+               'MIME' => $this->FILE_INFO['MIME'],
+               'DUPE' => $this->FILE_INFO['DUPE'],
+               'FILENAME' => $this->FILE_INFO['FILENAME'],
             ];
         }
         return $result;

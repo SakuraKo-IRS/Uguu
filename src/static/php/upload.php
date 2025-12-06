@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Uguu
  *
@@ -29,6 +30,7 @@
  */
 
 require_once __DIR__ . '/../vendor/autoload.php';
+
 use Pomf\Uguu\Classes\Upload;
 use Pomf\Uguu\Classes\Response;
 
@@ -41,6 +43,7 @@ function handleFiles(string $outputFormat, array $files): void
     $res = [];
     $i = 0;
     while ($i < $fCount) {
+        $upload->FILE_INFO = $files[$i];
         $res[] = $upload->uploadFile();
         $i++;
     }
@@ -49,7 +52,9 @@ function handleFiles(string $outputFormat, array $files): void
     }
 }
 
-$resType = (isset($_GET['output']) and !empty($_GET['output'])) ? strtolower(preg_replace('/[^a-zA-Z]/', '', $_GET['output'])) : 'json';
+$resType = (isset($_GET['output']) and !empty($_GET['output'])) ? strtolower(
+    preg_replace('/[^a-zA-Z]/', '', $_GET['output'])
+) : 'json';
 $response = new Response($resType);
 if (!isset($_FILES['files']) or empty($_FILES['files'])) {
     $response->error(400, 'No input file(s)');

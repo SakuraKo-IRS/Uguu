@@ -1,6 +1,6 @@
 {
   "dest": "dist",
-  "pkgVersion": "1.9.8",
+  "pkgVersion": "1.9.9",
   "pages": [
 	"index.ejs",
 	"faq.ejs",
